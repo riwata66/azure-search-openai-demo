@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { initializeIcons } from "@fluentui/react";
@@ -40,6 +40,8 @@ if (useLogin) {
 
 initializeIcons();
 
+const Ryohi = lazy(() => import("./pages/oneshot/Ryohi"));
+
 const router = createHashRouter([
     {
         path: "/",
@@ -51,7 +53,11 @@ const router = createHashRouter([
             },
             {
                 path: "qa",
-                lazy: () => import("./pages/oneshot/OneShot")
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Ryohi />
+                    </Suspense>
+                )
             },
             {
                 path: "*",
