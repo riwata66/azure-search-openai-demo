@@ -20,7 +20,7 @@ const Layout = () => {
                         <ul className={styles.headerNavList}>
                             <li>
                                 <NavLink to="/" className={({ isActive }) => (isActive ? styles.headerNavPageLinkActive : styles.headerNavPageLink)}>
-                                    総合受付
+                                    総合
                                 </NavLink>
                             </li>
                             <li className={styles.headerNavLeftMargin}>
