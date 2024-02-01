@@ -17,7 +17,7 @@ import { useMsal } from "@azure/msal-react";
 import { TokenClaimsDisplay } from "../../components/TokenClaimsDisplay";
 import { PromptParameter } from "./PromptParameter";
 
-export default function Component(props : PromptParameter): JSX.Element {
+export default function Component(props: PromptParameter): JSX.Element {
     const [isConfigPanelOpen, setIsConfigPanelOpen] = useState(false);
     const [promptTemplate, setPromptTemplate] = useState<string>("");
     const [promptTemplatePrefix, setPromptTemplatePrefix] = useState<string>("");
@@ -40,6 +40,7 @@ export default function Component(props : PromptParameter): JSX.Element {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<unknown>();
     const [answer, setAnswer] = useState<ChatAppResponse>();
+    const title = props.title;
 
     const [activeCitation, setActiveCitation] = useState<string>();
     const [activeAnalysisPanelTab, setActiveAnalysisPanelTab] = useState<AnalysisPanelTabs | undefined>(undefined);
@@ -53,8 +54,6 @@ export default function Component(props : PromptParameter): JSX.Element {
             setShowGPT4VOptions(config.showGPT4VOptions);
         });
     };
-
-    // console.log("★props.promptTemplate: ", props.promptTemplate);
 
     useEffect(() => {
         getConfig();
@@ -71,6 +70,7 @@ export default function Component(props : PromptParameter): JSX.Element {
         const token = client ? await getToken(client) : undefined;
 
         try {
+            //console.log("★props.promptTemplate: ", props.promptTemplate);
             const request: ChatAppRequest = {
                 messages: [
                     {
@@ -80,7 +80,7 @@ export default function Component(props : PromptParameter): JSX.Element {
                 ],
                 context: {
                     overrides: {
-                        prompt_template: promptTemplate.length === 0 ? undefined : props.promptTemplate,
+                        prompt_template: props.promptTemplate,
                         prompt_template_prefix: promptTemplatePrefix.length === 0 ? undefined : promptTemplatePrefix,
                         prompt_template_suffix: promptTemplateSuffix.length === 0 ? undefined : promptTemplateSuffix,
                         exclude_category: excludeCategory.length === 0 ? undefined : excludeCategory,
@@ -98,6 +98,7 @@ export default function Component(props : PromptParameter): JSX.Element {
                 // ChatAppProtocol: Client must pass on any session state received from the server
                 session_state: answer ? answer.choices[0].session_state : null
             };
+            //console.log("★request prompt_template: ", request?.context?.overrides?.prompt_template);
             const result = await askApi(request, token);
             setAnswer(result);
         } catch (e) {
@@ -172,7 +173,7 @@ export default function Component(props : PromptParameter): JSX.Element {
     return (
         <div className={styles.oneshotContainer}>
             <div className={styles.oneshotTopSection}>
-                <h1 className={styles.oneshotTitle}>旅費規程</h1>
+                <h1 className={styles.oneshotTitle}>{title}</h1>
                 <div className={styles.oneshotQuestionInput}>
                     <QuestionInput placeholder="質問をどうぞ" disabled={isLoading} initQuestion={question} onSend={question => makeApiRequest(question)} />
                 </div>

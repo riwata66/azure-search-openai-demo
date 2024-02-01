@@ -10,6 +10,7 @@ import "./index.css";
 
 import Layout from "./pages/layout/Layout";
 import Chat from "./pages/chat/Chat";
+import Syugyou from "./pages/oneshot/Syugyou";
 
 var layout;
 if (useLogin) {
@@ -52,10 +53,18 @@ const router = createHashRouter([
                 element: <Chat />
             },
             {
-                path: "qa",
+                path: "ryohi",
                 element: (
                     <Suspense fallback={<div>Loading...</div>}>
                         <Ryohi />
+                    </Suspense>
+                )
+            },
+            {
+                path: "syugyou",
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Syugyou />
                     </Suspense>
                 )
             },
