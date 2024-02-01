@@ -172,7 +172,6 @@ export default function Component(props : PromptParameter): JSX.Element {
     return (
         <div className={styles.oneshotContainer}>
             <div className={styles.oneshotTopSection}>
-                <SettingsButton className={styles.settingsButton} onClick={() => setIsConfigPanelOpen(!isConfigPanelOpen)} />
                 <h1 className={styles.oneshotTitle}>旅費規程</h1>
                 <div className={styles.oneshotQuestionInput}>
                     <QuestionInput placeholder="質問をどうぞ" disabled={isLoading} initQuestion={question} onSend={question => makeApiRequest(question)} />

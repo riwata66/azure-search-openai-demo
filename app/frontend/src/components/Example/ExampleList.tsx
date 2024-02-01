@@ -2,7 +2,13 @@ import { Example } from "./Example";
 
 import styles from "./Example.module.css";
 
-const DEFAULT_EXAMPLES: string[] = ["出役とは何ですか？", "日帰り出張の日当はいくらですか？", "長期出張中に年休を取得したら日当は支払われますか？"];
+const DEFAULT_EXAMPLES: string[] = [
+    "出役とは何ですか？",
+    "日帰り出張の日当はいくらですか？",
+    "長期出張中に年休を取得したら日当は支払われますか？",
+    "1週間の所定労働時間は何時間ですか？",
+    "フレックス制度について教えてください"
+];
 
 const GPT4V_EXAMPLES: string[] = [
     "Compare the impact of interest rates and GDP in financial markets.",
