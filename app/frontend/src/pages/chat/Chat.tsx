@@ -233,10 +233,9 @@ const Chat = () => {
     const onShowCitation = (citation: string, index: number) => {
         if (activeCitation === citation && activeAnalysisPanelTab === AnalysisPanelTabs.CitationTab && selectedAnswer === index) {
             setActiveAnalysisPanelTab(undefined);
-        } else {
-            setActiveCitation(citation);
-            setActiveAnalysisPanelTab(AnalysisPanelTabs.CitationTab);
         }
+        setActiveCitation(citation);
+        setActiveAnalysisPanelTab(AnalysisPanelTabs.CitationTab);
 
         setSelectedAnswer(index);
     };

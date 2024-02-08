@@ -148,10 +148,9 @@ export default function Component(props: PromptParameter): JSX.Element {
     const onShowCitation = (citation: string) => {
         if (activeCitation === citation && activeAnalysisPanelTab === AnalysisPanelTabs.CitationTab) {
             setActiveAnalysisPanelTab(undefined);
-        } else {
-            setActiveCitation(citation);
-            setActiveAnalysisPanelTab(AnalysisPanelTabs.CitationTab);
         }
+        setActiveCitation(citation);
+        setActiveAnalysisPanelTab(AnalysisPanelTabs.CitationTab);
     };
 
     const onToggleTab = (tab: AnalysisPanelTabs) => {

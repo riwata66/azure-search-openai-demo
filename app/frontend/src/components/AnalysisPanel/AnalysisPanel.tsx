@@ -31,28 +31,14 @@ export const AnalysisPanel = ({ answer, activeTab, activeCitation, citationHeigh
             onLinkClick={pivotItem => pivotItem && onActiveTabChanged(pivotItem.props.itemKey! as AnalysisPanelTabs)}
         >
             <PivotItem
-                itemKey={AnalysisPanelTabs.ThoughtProcessTab}
-                headerText="Thought process"
-                headerButtonProps={isDisabledThoughtProcessTab ? pivotItemDisabledStyle : undefined}
-            >
-                <ThoughtProcess thoughts={answer.choices[0].context.thoughts || []} />
-            </PivotItem>
-            <PivotItem
-                itemKey={AnalysisPanelTabs.SupportingContentTab}
-                headerText="Supporting content"
-                headerButtonProps={isDisabledSupportingContentTab ? pivotItemDisabledStyle : undefined}
-            >
-                <SupportingContent supportingContent={answer.choices[0].context.data_points} />
-            </PivotItem>
-            <PivotItem
                 itemKey={AnalysisPanelTabs.CitationTab}
-                headerText="Citation"
+                headerText="閉じる"
                 headerButtonProps={isDisabledCitationTab ? pivotItemDisabledStyle : undefined}
             >
                 {activeCitation?.endsWith(".png") ? (
                     <img src={activeCitation} className={styles.citationImg} />
                 ) : (
-                    <iframe title="Citation" src={activeCitation} width="100%" height={citationHeight} />
+                    <embed src={activeCitation} type="application/pdf" width="600" height={citationHeight} />
                 )}
             </PivotItem>
         </Pivot>
