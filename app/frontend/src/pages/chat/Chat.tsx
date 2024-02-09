@@ -121,6 +121,7 @@ const Chat = () => {
         setActiveCitation(undefined);
         setActiveAnalysisPanelTab(undefined);
 
+        //console.log("★question", question);
         const token = client ? await getToken(client) : undefined;
 
         try {
@@ -151,7 +152,7 @@ const Chat = () => {
                 // ChatAppProtocol: Client must pass on any session state received from the server
                 session_state: answers.length ? answers[answers.length - 1][1].choices[0].session_state : null
             };
-
+            //console.log("★request", request);
             const response = await chatApi(request, token);
             if (!response.body) {
                 throw Error("No response body");
@@ -254,6 +255,7 @@ const Chat = () => {
         <div className={styles.container}>
             <div className={styles.commandsContainer}>
                 <ClearChatButton className={styles.commandButton} onClick={clearChat} disabled={!lastQuestionRef.current || isLoading} />
+                <SettingsButton className={styles.commandButton} onClick={() => setIsConfigPanelOpen(!isConfigPanelOpen)} />
             </div>
             <div className={styles.chatRoot}>
                 <div className={styles.chatContainer}>
